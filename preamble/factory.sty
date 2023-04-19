@@ -1,0 +1,43 @@
+\ProvidesPackage{../preamble/factory}
+
+% Drawing package
+\usepackage{graphicx} 
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+
+% Line
+\newcommand{\streck}{\rule[0.5ex]{1.3em}{.5pt}} %0.7pt for the thesis.
+
+% Disposition
+\newcommand{\sectionn}[1]{\section*{#1} \addcontentsline{toc}{section}{#1}}
+\newcommand{\subsectionn}[1]{\subsection*{#1} \addcontentsline{toc}{subsection}{#1}}
+\newcommand{\subsubsectionn}[1]{\subsubsection*{#1} \addcontentsline{toc}{subsubsection}{#1}}
+\newcommand{\chaptern}[1]{\chapter*{#1} \addcontentsline{toc}{chapter}{#1}}
+\newcommand{\partn}[1]{\part*{#1} \addcontentsline{toc}{part}{#1}}
+
+% pdf
+\usepackage{pdfpages}
+
+% Code
+%! TEX program = pdf_escaped
+\usepackage{minted}
+
+% Nomenclature
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand\nomname{}
+
+% Keywords
+\providecommand{\keywords}[1] {
+    \centerline {
+        \small
+        \textbf{\scshape{Keywords ---}} #1
+    }
+}
+
+% No date
+\date{}
+
+% Abstract
+\renewcommand\abstractname{\scshape{abstract} \vskip 0.15cm \rule{2cm}{0.2mm}}

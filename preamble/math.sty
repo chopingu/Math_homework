@@ -1,0 +1,128 @@
+\ProvidesPackage{../preamble/math}
+
+% Packages
+\usepackage{nicefrac, amsmath, amsthm, amssymb}
+\usepackage[c]{esvect} % vector notation
+
+% Fix spacing around \left and \right
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+\allowdisplaybreaks 
+
+% References
+\newcommand{\eref}[1]{(\ref{#1})}
+
+% Generic symbols
+\newcommand{\build}{\ | \ }
+\newcommand{\restr}[2][\big]{#1\arrowvert_{#2}}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\Abs}[1]{\left\lvert#1\right\rvert}
+
+% Logic
+\newcommand{\Ekv}{\ \Leftrightarrow \ }
+\newcommand{\ekv}{\ \leftrightarrow \ }
+\newcommand{\Imp}{\ \Rightarrow \ }
+\newcommand{\imp}{\ \rightarrow \ }
+\newcommand{\Och}{\ \wedge \ }
+\newcommand{\Eller}{\ \vee \ }
+
+% Sets
+\renewcommand{\emptyset}{\textrm{\fontfamily{ugm}\upshape\mdseries\selectfont\O}}
+\newcommand{\Z}{\mathbf{Z}}
+\newcommand{\ZZ}{\mathbf{Z}^+}
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\Q}{\mathbf{Q}}
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+
+% Functions
+\renewcommand{\sin}{\mathop\mathrm{sin}\nolimits}
+\renewcommand{\cos}{\mathop\mathrm{cos}\nolimits}
+\renewcommand{\tan}{\mathop\mathrm{tan}\nolimits}
+\renewcommand{\cot}{\mathop\mathrm{cot}\nolimits}
+\renewcommand{\arcsin}{\mathop\mathrm{arcsin}\nolimits}
+\renewcommand{\arccos}{\mathop\mathrm{arccos}\nolimits}
+\renewcommand{\arctan}{\mathop\mathrm{arctan}\nolimits}
+\renewcommand{\arctan}{\mathop\mathrm{arccot}\nolimits}
+\renewcommand{\ln}{\mathop\mathrm{ln}\nolimits}
+\renewcommand{\lg}{\mathop\mathrm{lg}\nolimits}
+\renewcommand{\log}{\mathop\mathrm{log}\nolimits}
+\renewcommand{\exp}{\mathop\mathrm{exp}\nolimits}
+
+% Analysis
+\renewcommand{\inf}{\mathop\mathrm{inf}}
+\renewcommand{\sup}{\mathop\mathrm{sup}}
+\renewcommand{\lim}{\mathop\mathrm{lim}}
+\renewcommand{\liminf}{\mathop\mathrm{lim\, inf}}
+\renewcommand{\limsup}{\mathop\mathrm{lim\, sup}}
+\renewcommand{\max}{\mathop\mathrm{max}}			
+\renewcommand{\min}{\mathop\mathrm{min}}
+
+% Algebra
+\renewcommand{\mod}{\mathop\mathrm{mod}\nolimits}
+\renewcommand{\pmod}[1]{\ (\mathop\mathrm{mod}\nolimits #1)}
+\renewcommand{\deg}{\mathop\mathrm{deg}\nolimits}
+
+% Number theory
+\DeclareMathOperator{\GCD}{\textsc{gcd}}
+\DeclareMathOperator{\LCM}{\textsc{lcm}}
+
+% Abstract algebra
+\DeclareMathOperator{\Ker}{\mathrm{Ker}}			
+\DeclareMathOperator{\Coker}{\mathrm{Coker}}
+\renewcommand{\Im}{\mathop\mathrm{Im}\nolimits}	
+\DeclareMathOperator{\Coim}{\mathrm{Coim}}
+\DeclareMathOperator{\Hom}{\mathrm{Hom}} 			
+\DeclareMathOperator{\End}{\mathrm{End}}
+\DeclareMathOperator{\Spec}{\mathrm{Spec}}
+\DeclareMathOperator{\Frac}{\mathrm{Frac}}
+\DeclareMathOperator{\Rad}{\mathrm{Rad}}
+
+% Category theory
+\DeclareMathOperator{\Fun}{\mathrm{Fun}}			
+\DeclareMathOperator{\Nat}{\mathrm{Nat}} 
+\def\indlim{\mathop{\oalign{\hfil$\rm lim$\hfil\cr$\longrightarrow$\cr}}}
+\def\prolim{\mathop{\oalign{\hfil$\rm lim$\hfil\cr$\longleftarrow$\cr}}}
+
+% Homological algebra
+\DeclareMathOperator{\Ext}{\mathrm{Ext}}			
+\DeclareMathOperator{\Tor}{\mathrm{Tor}}
+
+% Greek symbols
+\usepackage[Symbol]{upgreek}
+\renewcommand{\alpha}{\upalpha}
+\renewcommand{\beta}{\upbeta}
+\renewcommand{\gamma}{\upgamma}
+\renewcommand{\delta}{\updelta}
+\renewcommand{\epsilon}{\upvarepsilon}
+\renewcommand{\zeta}{\upzeta}
+\renewcommand{\eta}{\upeta}
+\renewcommand{\theta}{\uptheta}
+\renewcommand{\iota}{\upiota}
+\renewcommand{\kappa}{\upkappa}
+\renewcommand{\lambda}{\uplambda}
+\renewcommand{\mu}{\upmu}
+\renewcommand{\nu}{\upnu}
+\renewcommand{\xi}{\upxi}
+\renewcommand{\pi}{\uppi}
+\renewcommand{\rho}{\uprho}
+\renewcommand{\sigma}{\upsigma}
+\renewcommand{\tau}{\uptau}
+\renewcommand{\upsilon}{\upupsilon}
+\renewcommand{\phi}{\upvarphi}
+\renewcommand{\chi}{\upchi}
+\renewcommand{\psi}{\uppsi}
+\renewcommand{\omega}{\upomega}
+\renewcommand{\Gamma}{\Upgamma}
+\renewcommand{\Delta}{\Updelta}
+\renewcommand{\Theta}{\Uptheta}
+\renewcommand{\Lambda}{\Uplambda}
+\renewcommand{\Xi}{\Upxi}
+\renewcommand{\Pi}{\Uppi}
+\renewcommand{\Sigma}{\Upsigma}
+\renewcommand{\Upsilon}{\Upupsilon}
+\renewcommand{\Phi}{\Upphi}
+\renewcommand{\Psi}{\Uppsi}
+\renewcommand{\Omega}{\Upomega}

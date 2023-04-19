@@ -1,0 +1,40 @@
+\ProvidesPackage{../preamble/style}
+
+% Headers
+\usepackage{titlesec}	
+\usepackage[dotinlabels, rightlabels]{titletoc}		
+\renewcommand{\thesection}{\S\arabic{section}} 
+\titleformat{\chapter}[display]{\normalfont\centering\bfseries}{\chaptertitlename\ \thechapter\vspace{.5pc}
+\setlength{\titlewidth}{10em}\titleline*[c]{\titlerule[.7pt]}}{0pc}{\large} 
+\titleformat{\section}{\centering\scshape}{\thesection.}{1ex}{}
+
+% Contents
+\contentsmargin{2em} %\contentsmargin{2.55em}
+
+\titlecontents{chapter}[1.8em]{\addvspace{1pc}\bfseries}
+{\contentslabel[\thecontentslabel.\hspace{1ex}]{1.8em}}
+{\hspace*{-1.8em}}
+{\titlerule*[1pc]{}\contentspage}
+
+\titlecontents{section}
+[4.1em]
+{}
+{\contentslabel[\thecontentslabel.\enspace\hfill]{2.3em}}
+{} %{\hspace*{-2.3em}}
+{\titlerule*[1pc]{.}\contentspage}
+
+% Quotes
+\newcommand{\attr}[1]{ \begin{flushright} \scriptsize \streck\hspace{1ex}#1 \end{flushright}}
+\newcommand{\attrx}[1]{ \begin{flushright} \scriptsize #1 \end{flushright}} 
+\newcommand{\epigraph}[1]{\begin{quote}\footnotesize #1 \end{quote} }
+
+% Cross-references
+\usepackage{hyperref}
+\usepackage{bookmark}
+\newcommand{\chlabel}[1]{\label{#1} \newcounter{#1} \setcounter{#1}{\value{chapter}} } 
+\newcommand{\chref}[1]{\arabic{#1}.\ref{#1}}
+\renewcommand{\theequation}{\arabic{equation}}
+
+% Figures
+\usepackage{caption}
+\usepackage[labelfont={sc}]{caption}

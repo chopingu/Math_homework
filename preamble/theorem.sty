@@ -1,0 +1,105 @@
+\ProvidesPackage{../preamble/theorem}
+
+% Counter
+\newcounter{chapter}
+
+% Variations of theorems
+\newtheoremstyle{thm} % name
+  {\topsep}%      Space above
+  {\topsep}%      Space below
+  {\itshape}%         Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\scshape}% Thm head font
+  {.\linebreak[0]~\streck~}%        Punctuation after thm head
+  {0pt}%     Space after thm head: " " = normal interword space; \newline = linebreak
+  {\thmname{#1} \thmnumber{#2}\thmnote{: #3}}
+
+\newtheoremstyle{thmeq}{\topsep}{\topsep}{\itshape}{}{\scshape}{.}{ }%
+  {\thmname{#1} \thmnumber{#2}\thmnote{: #3}}
+  
+\newtheoremstyle{refthm}{\topsep}{\topsep}{\itshape}{}{\scshape}{.\linebreak[0]~\streck~}{0pt}%
+  {\thmname{#1} \thmnumber{#2} \thmnote{(#3)}}
+
+\newtheoremstyle{refthmeq}{\topsep}{\topsep}{\itshape}{}{\scshape}{.}{ }%
+  {\thmname{#1} \thmnumber{#2} \thmnote{(#3)}}
+    
+\newtheoremstyle{intthm}{\topsep}{\topsep}{\itshape}{}{\scshape}{.\linebreak[0]~\streck~}{0pt}%
+  {\thmname{#1} \thmnote{#3}}
+  
+\newtheoremstyle{intthmeq}{\topsep}{\topsep}{\itshape}{}{\scshape}{.}{ }%   
+  {\thmname{#1} \thmnote{#3}}
+  
+\newtheoremstyle{def}{\topsep}{\topsep}{}{}{\scshape}{.\linebreak[0]~\streck~}{0pt}%
+  {\thmname{#1} \thmnumber{#2}\thmnote{: #3}}
+  
+\newtheoremstyle{refdef}{\topsep}{\topsep}{}{}{\scshape}{.\linebreak[0]~\streck~}{0pt}%     
+  {\thmname{#1} \thmnumber{#2} \thmnote{(#3)}}
+
+\newtheoremstyle{intdef}{\topsep}{\topsep}{}{}{\scshape}{.\linebreak[0]~\streck~}{0pt}%
+  {\thmname{#1} \thmnote{#3}}
+  
+% Theorem
+\theoremstyle{thm} 
+\newtheorem{theorem}{Theorem}[chapter] 
+
+\renewcommand{\thetheorem}{\arabic{theorem}}
+
+\theoremstyle{thmeq}
+\newtheorem{theorem*}[theorem]{Theorem}
+
+\theoremstyle{refthm} 
+\newtheorem{reftheorem}[theorem]{Theorem} % Numeroteras efter "Theorem".  
+
+\theoremstyle{refthmeq} 
+\newtheorem{reftheorem*}[theorem]{Theorem} 
+
+\theoremstyle{intthm} 
+\newtheorem{inttheorem}{Theorem} % Numeroteras icke alls.  
+
+\theoremstyle{intthmeq} 
+\newtheorem{inttheorem*}{Theorem} 
+
+\newcommand{\bth}[1][]{\begin{theorem}[#1]}
+\renewcommand{\eth}{\end{theorem}}
+
+% Lemma
+\theoremstyle{thm} 
+\newtheorem{lemma}{Lemma}[chapter]
+\renewcommand{\thelemma}{\arabic{lemma}}
+
+\theoremstyle{thmeq}
+\newtheorem{lemma*}[lemma]{Lemma}
+
+\newcommand{\blem}{\begin{lemma}}
+\newcommand{\elem}{\end{lemma}} 
+
+% Proof
+\newcommand{\bpr}{\begin{proof}}
+\newcommand{\epr}{\end{proof}}
+
+% Definition
+\theoremstyle{def} 
+\newtheorem{definition}{Definition}[chapter]
+\renewcommand{\thedefinition}{\arabic{definition}}
+
+\theoremstyle{refdef} 
+\newtheorem{refdefinition}[definition]{Definition}   
+
+\theoremstyle{intdef} 
+\newtheorem{intdefinition}[definition]{Definition}   
+
+\newcommand{\bdf}{\begin{definition}}
+\newcommand{\edf}{%\nolinebreak \hfill \hspace{\stretch{1}} $\diamond$ 
+\end{definition}}
+
+% Example
+\theoremstyle{def}
+
+\newtheorem{examplex}{Example}[chapter]
+\renewcommand{\theexamplex}{\arabic{examplex}}
+\newenvironment{example}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\triangle$}\examplex}
+  {\popQED\endexamplex}
+  
+\newcommand{\bex}{\begin{example}} % \streck \hspace{1ex}}
+\newcommand{\eex}{\end{example}} %\nolinebreak \hfill \hspace{\stretch{1}} $\triangle$ \end{example}}

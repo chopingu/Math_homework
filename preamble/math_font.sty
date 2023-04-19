@@ -1,0 +1,435 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% mathfont.sty
+%% Thierry.Bouche@ujf-grenoble.fr
+%%
+%% This little package provides a `cheap solution' to customize the
+%% math fonts used in a LaTeX document.  You can either use it with the
+%% `upright' option to get upright letters in maths or with the `generic'
+%% option to get math italic letters from the default text font. If you
+%% intend to use scalable outline fonts without optical scaling (as usual
+%% PS fonts) you will need the `psscale' option if you hope to read the
+%% scriptscriptsize'd letters. [The default  is generic + psscale]
+%% WARNING: NEVER TRUST THIS PACKAGE !
+%% In fact, it makes use of *text* fonts for *maths* and TeX treats these
+%% kind of beasts in rather different manners, for instance, kerning  and
+%% side-bearings won't be right, so use this only for simple
+%% formulas, and always check carefully the output: many formulae could
+%% need explicit kerns to work correctly (the product $fi$ for instance
+%% *should* be put as (more or less) $f\kern.05emi$ ).
+
+\def\fileversion{1.1-if}
+\def\filedate{1996/01/16}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{../preamble/math_font}[\filedate{} math package  for
+using Text Font as Maths fonts] 
+\typeout{Mathfont : ajuste l'usage des fontes de maths -- version loria}
+
+\newcommand\@mf@ed@{OT1}
+\def\@mf@ed{T1}
+\ifx\encodingdefault\@mf@ed@\else\ifx\encodingdefault\@mf@ed\else
+\message{^^JMathfont.sty doesn't work with non standard ^^J
+text encodings, sorry.^^J^^J}
+\endinput\fi\fi
+
+\newif\if@mf@lucida\@mf@lucidafalse
+\newif\if@mf@baskerville\@mf@baskervillefalse
+\newif\if@mf@plantin\@mf@plantinfalse
+\newif\if@mf@minion\@mf@minionfalse
+\newif\if@mf@utopia\@mf@utopiafalse
+\newif\if@mf@generic\@mf@genericfalse
+\newif\if@mf@upright\@mf@uprightfalse
+\newif\if@mf@psscale\@mf@psscalefalse
+\newif\if@mf@hermann\@mf@hermannfalse
+
+\DeclareOption{plantin}{\@mf@plantintrue}
+\DeclareOption{lucida}{\@mf@lucidatrue}
+\DeclareOption{baskerville}{\@mf@baskervilletrue}
+\DeclareOption{minion}{\@mf@miniontrue}
+\DeclareOption{utopia}{\@mf@utopiatrue}
+\DeclareOption{generic}{\@mf@generictrue}
+\DeclareOption{upright}{\@mf@uprighttrue}
+\DeclareOption{psscale}{\@mf@psscaletrue}
+\DeclareOption{hermann}{\@mf@hermanntrue}
+\ProcessOptions
+
+\if@mf@lucida\else\if@mf@baskerville\else\if@mf@minion\else
+\if@mf@utopia\else\if@mf@generic\else\if@mf@upright\else
+ \if@mf@psscale\else\if@mf@plantin\else
+\newcommand\@reserv@@{klc}\ifx\rmdefault\@reserv@@\@mf@lucidatrue\fi
+\renewcommand\@reserv@@{knb}\ifx\rmdefault\@reserv@@\@mf@baskervilletrue\fi
+\renewcommand\@reserv@@{knb9}\ifx\rmdefault\@reserv@@\@mf@baskervilletrue\fi
+\renewcommand\@reserv@@{kmnx}\ifx\rmdefault\@reserv@@\@mf@miniontrue\fi
+\renewcommand\@reserv@@{kmn9}\ifx\rmdefault\@reserv@@\@mf@miniontrue\fi
+\renewcommand\@reserv@@{pmn}\ifx\rmdefault\@reserv@@\@mf@miniontrue\fi
+\renewcommand\@reserv@@{kutx}\ifx\rmdefault\@reserv@@\@mf@utopiatrue\fi
+\renewcommand\@reserv@@{kut9}\ifx\rmdefault\@reserv@@\@mf@utopiatrue\fi
+\renewcommand\@reserv@@{put}\ifx\rmdefault\@reserv@@\@mf@utopiatrue\fi
+\fi\fi\fi\fi\fi\fi\fi\fi
+
+\if@mf@lucida\else\if@mf@baskerville\else\if@mf@minion\else
+\if@mf@utopia\else\if@mf@generic\else\if@mf@upright\else
+ \if@mf@psscale\else\if@mf@plantin\else\@mf@generictrue\@mf@psscaletrue
+\fi\fi\fi\fi\fi\fi\fi\fi
+
+\if@mf@lucida
+\DeclareSymbolFont{letters}{OML}{klc}{m}{it}
+\DeclareSymbolFont{symbols}{OMS}{klc}{m}{n}
+\DeclareSymbolFont{largesymbols}{OMX}{klc}{m}{n}
+\SetSymbolFont{letters}{normal}{OML}{klc}{m}{it}
+%\SetSymbolFont{letters}{bold}{OML}{klc}{b}{it}
+\def\boldmath{
+   \@warning{there is no bold Symbol font}
+   \global\let\boldmath=\relax
+}
+\thinmuskip=3.4mu
+\medmuskip=4.5mu plus 2mu minus 4mu
+\thickmuskip=6mu plus 5mu minus 1mu
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\if@mf@baskerville
+\DeclareSymbolFont{letters}{OML}{knbcm}{m}{it}
+\SetSymbolFont{letters}{normal}{OML}{knbcm}{m}{it}
+\SetSymbolFont{letters}{bold}{OML}{knbcm}{b}{it}
+\DeclareSymbolFont{operators}{OT1}{knbcm}{m}{n}
+\SetSymbolFont{operators}{normal}{OT1}{knbcm}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{knbcm}{b}{n}
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\if@mf@plantin
+\renewcommand\rmdefault{bpnm}
+\renewcommand\mddefault{l}
+
+\DeclareSymbolFont{letters}{OML}{bpncm}{m}{it}
+\SetSymbolFont{letters}{normal}{OML}{bpncm}{m}{it}
+\SetSymbolFont{letters}{bold}{OML}{bpncm}{b}{it}
+\DeclareSymbolFont{operators}{OT1}{bpncm}{m}{n}
+\SetSymbolFont{operators}{normal}{OT1}{bpncm}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{bpncm}{b}{n}
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\if@mf@minion
+\DeclareSymbolFont{letters}{OML}{kmncm}{m}{it}
+\SetSymbolFont{letters}{normal}{OML}{kmncm}{m}{it}
+\SetSymbolFont{letters}{bold}{OML}{kmncm}{b}{it}
+\DeclareSymbolFont{operators}{OT1}{kmncm}{m}{n}
+\SetSymbolFont{operators}{normal}{OT1}{kmncm}{m}{n}
+\SetSymbolFont{operators}{bold}{OT1}{kmncm}{b}{n}
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\if@mf@utopia
+\DeclareSymbolFont{letters}{OML}{kutluc}{m}{it}
+\SetSymbolFont{letters}{normal}{OML}{kutluc}{m}{it}
+\SetSymbolFont{letters}{bold}{OML}{kutluc}{b}{it}
+\DeclareSymbolFont{operators}{OT1}{kutluc}{m}{n}
+\SetSymbolFont{operators}{normal}{OT1}{kutluc}{m}{n}
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\if@mf@generic
+\DeclareSymbolFont{textletters}{\encodingdefault}{\rmdefault}{m}{it}
+\SetSymbolFont{textletters}{normal}{\encodingdefault}{\rmdefault}{m}{it}
+\SetSymbolFont{textletters}{bold}{\encodingdefault}{\rmdefault}{b}{it}
+\DeclareMathSymbol{a}{\mathalpha}{textletters}{`a}
+\DeclareMathSymbol{b}{\mathalpha}{textletters}{`b}
+\DeclareMathSymbol{c}{\mathalpha}{textletters}{`c}
+\DeclareMathSymbol{d}{\mathalpha}{textletters}{`d}
+\DeclareMathSymbol{e}{\mathalpha}{textletters}{`e}
+\DeclareMathSymbol{f}{\mathalpha}{textletters}{`f}
+\DeclareMathSymbol{g}{\mathalpha}{textletters}{`g}
+\DeclareMathSymbol{h}{\mathalpha}{textletters}{`h}
+\DeclareMathSymbol{i}{\mathalpha}{textletters}{`i}
+\DeclareMathSymbol{j}{\mathalpha}{textletters}{`j}
+\DeclareMathSymbol{k}{\mathalpha}{textletters}{`k}
+\DeclareMathSymbol{l}{\mathalpha}{textletters}{`l}
+\DeclareMathSymbol{m}{\mathalpha}{textletters}{`m}
+\DeclareMathSymbol{n}{\mathalpha}{textletters}{`n}
+\DeclareMathSymbol{o}{\mathalpha}{textletters}{`o}
+\DeclareMathSymbol{p}{\mathalpha}{textletters}{`p}
+\DeclareMathSymbol{q}{\mathalpha}{textletters}{`q}
+\DeclareMathSymbol{r}{\mathalpha}{textletters}{`r}
+\DeclareMathSymbol{s}{\mathalpha}{textletters}{`s}
+\DeclareMathSymbol{t}{\mathalpha}{textletters}{`t}
+\DeclareMathSymbol{u}{\mathalpha}{textletters}{`u}
+\DeclareMathSymbol{v}{\mathalpha}{textletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{textletters}{`w}
+\DeclareMathSymbol{x}{\mathalpha}{textletters}{`x}
+\DeclareMathSymbol{y}{\mathalpha}{textletters}{`y}
+\DeclareMathSymbol{z}{\mathalpha}{textletters}{`z}
+
+\DeclareMathSymbol{A}{\mathalpha}{textletters}{`A}
+\DeclareMathSymbol{B}{\mathalpha}{textletters}{`B}
+\DeclareMathSymbol{C}{\mathalpha}{textletters}{`C}
+\DeclareMathSymbol{D}{\mathalpha}{textletters}{`D}
+\DeclareMathSymbol{E}{\mathalpha}{textletters}{`E}
+\DeclareMathSymbol{F}{\mathalpha}{textletters}{`F}
+\DeclareMathSymbol{G}{\mathalpha}{textletters}{`G}
+\DeclareMathSymbol{H}{\mathalpha}{textletters}{`H}
+\DeclareMathSymbol{I}{\mathalpha}{textletters}{`I}
+\DeclareMathSymbol{J}{\mathalpha}{textletters}{`J}
+\DeclareMathSymbol{K}{\mathalpha}{textletters}{`K}
+\DeclareMathSymbol{L}{\mathalpha}{textletters}{`L}
+\DeclareMathSymbol{M}{\mathalpha}{textletters}{`M}
+\DeclareMathSymbol{N}{\mathalpha}{textletters}{`N}
+\DeclareMathSymbol{O}{\mathalpha}{textletters}{`O}
+\DeclareMathSymbol{P}{\mathalpha}{textletters}{`P}
+\DeclareMathSymbol{Q}{\mathalpha}{textletters}{`Q}
+\DeclareMathSymbol{R}{\mathalpha}{textletters}{`R}
+\DeclareMathSymbol{S}{\mathalpha}{textletters}{`S}
+\DeclareMathSymbol{T}{\mathalpha}{textletters}{`T}
+\DeclareMathSymbol{U}{\mathalpha}{textletters}{`U}
+\DeclareMathSymbol{V}{\mathalpha}{textletters}{`V}
+\DeclareMathSymbol{W}{\mathalpha}{textletters}{`W}
+\DeclareMathSymbol{X}{\mathalpha}{textletters}{`X}
+\DeclareMathSymbol{Y}{\mathalpha}{textletters}{`Y}
+\DeclareMathSymbol{Z}{\mathalpha}{textletters}{`Z}
+
+\DeclareSymbolFont{textoperators}{\encodingdefault}{\rmdefault}{\mddefault}{n}
+\SetSymbolFont{textoperators}{normal}{\encodingdefault}{\rmdefault}{\mddefault}{n}
+\SetSymbolFont{textoperators}{bold}{\encodingdefault}{\rmdefault}{\bfdefault}{n}
+
+\DeclareMathSymbol{0}{\mathalpha}{textoperators}{`0}
+\DeclareMathSymbol{1}{\mathalpha}{textoperators}{`1}
+\DeclareMathSymbol{2}{\mathalpha}{textoperators}{`2}
+\DeclareMathSymbol{3}{\mathalpha}{textoperators}{`3}
+\DeclareMathSymbol{4}{\mathalpha}{textoperators}{`4}
+\DeclareMathSymbol{5}{\mathalpha}{textoperators}{`5}
+\DeclareMathSymbol{6}{\mathalpha}{textoperators}{`6}
+\DeclareMathSymbol{7}{\mathalpha}{textoperators}{`7}
+\DeclareMathSymbol{8}{\mathalpha}{textoperators}{`8}
+\DeclareMathSymbol{9}{\mathalpha}{textoperators}{`9}
+
+\DeclareMathAccent{\acute}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  1\else 19\fi}
+\DeclareMathAccent{\grave}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  0\else 18\fi}
+\DeclareMathAccent{\ddot}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  4\else 127\fi}
+\DeclareMathAccent{\tilde}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  3\else 126\fi}
+\DeclareMathAccent{\bar}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  9\else 22\fi}
+\DeclareMathAccent{\breve}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  8\else 21\fi}
+\DeclareMathAccent{\check}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  7\else 20\fi}
+\DeclareMathAccent{\hat}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  2\else 94\fi}
+\DeclareMathAccent{\dot}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  10\else 95\fi}
+
+\fi
+
+\if@mf@hermann
+\DeclareSymbolFont{textupletters}{OT1}{knbcm}{m}{n}
+\SetSymbolFont{textupletters}{normal}{OT1}{knbcm}{m}{n}
+\SetSymbolFont{textupletters}{bold}{OT1}{knbcm}{b}{n}
+\DeclareMathSymbol{A}{\mathalpha}{textupletters}{`A}
+\DeclareMathSymbol{B}{\mathalpha}{textupletters}{`B}
+\DeclareMathSymbol{C}{\mathalpha}{textupletters}{`C}
+\DeclareMathSymbol{D}{\mathalpha}{textupletters}{`D}
+\DeclareMathSymbol{E}{\mathalpha}{textupletters}{`E}
+\DeclareMathSymbol{F}{\mathalpha}{textupletters}{`F}
+\DeclareMathSymbol{G}{\mathalpha}{textupletters}{`G}
+\DeclareMathSymbol{H}{\mathalpha}{textupletters}{`H}
+\DeclareMathSymbol{I}{\mathalpha}{textupletters}{`I}
+\DeclareMathSymbol{J}{\mathalpha}{textupletters}{`J}
+\DeclareMathSymbol{K}{\mathalpha}{textupletters}{`K}
+\DeclareMathSymbol{L}{\mathalpha}{textupletters}{`L}
+\DeclareMathSymbol{M}{\mathalpha}{textupletters}{`M}
+\DeclareMathSymbol{N}{\mathalpha}{textupletters}{`N}
+\DeclareMathSymbol{O}{\mathalpha}{textupletters}{`O}
+\DeclareMathSymbol{P}{\mathalpha}{textupletters}{`P}
+\DeclareMathSymbol{Q}{\mathalpha}{textupletters}{`Q}
+\DeclareMathSymbol{R}{\mathalpha}{textupletters}{`R}
+\DeclareMathSymbol{S}{\mathalpha}{textupletters}{`S}
+\DeclareMathSymbol{T}{\mathalpha}{textupletters}{`T}
+\DeclareMathSymbol{U}{\mathalpha}{textupletters}{`U}
+\DeclareMathSymbol{V}{\mathalpha}{textupletters}{`V}
+\DeclareMathSymbol{W}{\mathalpha}{textupletters}{`W}
+\DeclareMathSymbol{X}{\mathalpha}{textupletters}{`X}
+\DeclareMathSymbol{Y}{\mathalpha}{textupletters}{`Y}
+\DeclareMathSymbol{Z}{\mathalpha}{textupletters}{`Z}
+\fi
+
+\if@mf@upright
+\DeclareSymbolFont{textupletters}{\encodingdefault}{\rmdefault}{m}{n}
+\SetSymbolFont{textupletters}{normal}{\encodingdefault}{\rmdefault}{m}{n}
+\SetSymbolFont{textupletters}{bold}{\encodingdefault}{\rmdefault}{b}{n}
+\DeclareMathSymbol{a}{\mathalpha}{textupletters}{`a}
+\DeclareMathSymbol{b}{\mathalpha}{textupletters}{`b}
+\DeclareMathSymbol{c}{\mathalpha}{textupletters}{`c}
+\DeclareMathSymbol{d}{\mathalpha}{textupletters}{`d}
+\DeclareMathSymbol{e}{\mathalpha}{textupletters}{`e}
+\DeclareMathSymbol{f}{\mathalpha}{textupletters}{`f}
+\DeclareMathSymbol{g}{\mathalpha}{textupletters}{`g}
+\DeclareMathSymbol{h}{\mathalpha}{textupletters}{`h}
+\DeclareMathSymbol{i}{\mathalpha}{textupletters}{`i}
+\DeclareMathSymbol{j}{\mathalpha}{textupletters}{`j}
+\DeclareMathSymbol{k}{\mathalpha}{textupletters}{`k}
+\DeclareMathSymbol{l}{\mathalpha}{textupletters}{`l}
+\DeclareMathSymbol{m}{\mathalpha}{textupletters}{`m}
+\DeclareMathSymbol{n}{\mathalpha}{textupletters}{`n}
+\DeclareMathSymbol{o}{\mathalpha}{textupletters}{`o}
+\DeclareMathSymbol{p}{\mathalpha}{textupletters}{`p}
+\DeclareMathSymbol{q}{\mathalpha}{textupletters}{`q}
+\DeclareMathSymbol{r}{\mathalpha}{textupletters}{`r}
+\DeclareMathSymbol{s}{\mathalpha}{textupletters}{`s}
+\DeclareMathSymbol{t}{\mathalpha}{textupletters}{`t}
+\DeclareMathSymbol{u}{\mathalpha}{textupletters}{`u}
+\DeclareMathSymbol{v}{\mathalpha}{textupletters}{`v}
+\DeclareMathSymbol{w}{\mathalpha}{textupletters}{`w}
+\DeclareMathSymbol{x}{\mathalpha}{textupletters}{`x}
+\DeclareMathSymbol{y}{\mathalpha}{textupletters}{`y}
+\DeclareMathSymbol{z}{\mathalpha}{textupletters}{`z}
+
+\DeclareMathSymbol{A}{\mathalpha}{textupletters}{`A}
+\DeclareMathSymbol{B}{\mathalpha}{textupletters}{`B}
+\DeclareMathSymbol{C}{\mathalpha}{textupletters}{`C}
+\DeclareMathSymbol{D}{\mathalpha}{textupletters}{`D}
+\DeclareMathSymbol{E}{\mathalpha}{textupletters}{`E}
+\DeclareMathSymbol{F}{\mathalpha}{textupletters}{`F}
+\DeclareMathSymbol{G}{\mathalpha}{textupletters}{`G}
+\DeclareMathSymbol{H}{\mathalpha}{textupletters}{`H}
+\DeclareMathSymbol{I}{\mathalpha}{textupletters}{`I}
+\DeclareMathSymbol{J}{\mathalpha}{textupletters}{`J}
+\DeclareMathSymbol{K}{\mathalpha}{textupletters}{`K}
+\DeclareMathSymbol{L}{\mathalpha}{textupletters}{`L}
+\DeclareMathSymbol{M}{\mathalpha}{textupletters}{`M}
+\DeclareMathSymbol{N}{\mathalpha}{textupletters}{`N}
+\DeclareMathSymbol{O}{\mathalpha}{textupletters}{`O}
+\DeclareMathSymbol{P}{\mathalpha}{textupletters}{`P}
+\DeclareMathSymbol{Q}{\mathalpha}{textupletters}{`Q}
+\DeclareMathSymbol{R}{\mathalpha}{textupletters}{`R}
+\DeclareMathSymbol{S}{\mathalpha}{textupletters}{`S}
+\DeclareMathSymbol{T}{\mathalpha}{textupletters}{`T}
+\DeclareMathSymbol{U}{\mathalpha}{textupletters}{`U}
+\DeclareMathSymbol{V}{\mathalpha}{textupletters}{`V}
+\DeclareMathSymbol{W}{\mathalpha}{textupletters}{`W}
+\DeclareMathSymbol{X}{\mathalpha}{textupletters}{`X}
+\DeclareMathSymbol{Y}{\mathalpha}{textupletters}{`Y}
+\DeclareMathSymbol{Z}{\mathalpha}{textupletters}{`Z}
+\DeclareSymbolFont{textoperators}{\encodingdefault}{\rmdefault}{\mddefault}{n}
+\SetSymbolFont{textoperators}{normal}{\encodingdefault}{\rmdefault}{\mddefault}{n}%
+\SetSymbolFont{textoperators}{bold}{\encodingdefault}{\rmdefault}{\bfdefault}{n}%
+
+\DeclareMathSymbol{0}{\mathalpha}{textoperators}{`0}
+\DeclareMathSymbol{1}{\mathalpha}{textoperators}{`1}
+\DeclareMathSymbol{2}{\mathalpha}{textoperators}{`2}
+\DeclareMathSymbol{3}{\mathalpha}{textoperators}{`3}
+\DeclareMathSymbol{4}{\mathalpha}{textoperators}{`4}
+\DeclareMathSymbol{5}{\mathalpha}{textoperators}{`5}
+\DeclareMathSymbol{6}{\mathalpha}{textoperators}{`6}
+\DeclareMathSymbol{7}{\mathalpha}{textoperators}{`7}
+\DeclareMathSymbol{8}{\mathalpha}{textoperators}{`8}
+\DeclareMathSymbol{9}{\mathalpha}{textoperators}{`9}
+
+\DeclareMathAccent{\acute}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  1\else 19\fi}
+\DeclareMathAccent{\grave}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  0\else 18\fi}
+\DeclareMathAccent{\ddot}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  4\else 127\fi}
+\DeclareMathAccent{\tilde}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  3\else 126\fi}
+\DeclareMathAccent{\bar}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  9\else 22\fi}
+\DeclareMathAccent{\breve}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  8\else 21\fi}
+\DeclareMathAccent{\check}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  7\else 20\fi}
+\DeclareMathAccent{\hat}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  2\else 94\fi}
+\DeclareMathAccent{\dot}{\mathalpha}{textoperators}{\ifx\encodingdefault\@mf@ed
+  10\else 95\fi}
+
+\fi
+
+\if@mf@psscale
+\DeclareMathSizes{5}{5}{5}{5}
+\DeclareMathSizes{6}{6}{5}{5}
+\DeclareMathSizes{7}{7}{5}{5}
+\DeclareMathSizes{8}{8}{6}{5}
+\DeclareMathSizes{9}{9}{7}{5}
+\DeclareMathSizes{10}{10}{7.4}{6}
+\DeclareMathSizes{10.95}{10.95}{8.5}{7}
+\DeclareMathSizes{12}{12}{9}{7}
+\DeclareMathSizes{14.4}{14.4}{10.95}{8}
+\DeclareMathSizes{17.28}{17.28}{12}{10}
+\DeclareMathSizes{20.74}{20.74}{14.4}{12}
+\DeclareMathSizes{24.88}{24.88}{17.28}{14.4}
+\fi
+
+\DeclareSymbolFont{operators}{OT1}{\rmdefault}{m}{n}
+\DeclareSymbolFont{bold}{OT1}{\rmdefault}{b}{n}
+\DeclareSymbolFont{italic}{OT1}{\rmdefault}{m}{it}
+\SetSymbolFont{operators}{bold}{OT1}{\rmdefault}{b}{n}%
+\SetSymbolFont{operators}{normal}{OT1}{\rmdefault}{m}{n}%
+\DeclareMathAlphabet{\mathbf}{\encodingdefault}{\rmdefault}{b}{n}%
+\DeclareMathAlphabet{\mathrm}{\encodingdefault}{\rmdefault}{m}{n}%
+\DeclareMathAlphabet{\mathsf}{\encodingdefault}{\sfdefault}{m}{n}%
+\DeclareMathAlphabet{\mathit}{\encodingdefault}{\rmdefault}{m}{it}%
+\DeclareMathAlphabet{\mathtt}{\encodingdefault}{\ttdefault}{m}{n}%
+\SetMathAlphabet{\mathbf}{bold}{\encodingdefault}{\rmdefault}{b}{n}%
+\SetMathAlphabet{\mathsf}{bold}{\encodingdefault}{\sfdefault}{b}{n}%
+\SetMathAlphabet{\mathrm}{bold}{\encodingdefault}{\rmdefault}{b}{n}%
+\SetMathAlphabet{\mathit}{bold}{\encodingdefault}{\rmdefault}{b}{it}%
+\endinput
