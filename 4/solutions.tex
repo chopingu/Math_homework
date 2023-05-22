@@ -97,14 +97,14 @@
 
         \vskip 0.3cm
         
-    \item[c)] Vi undersöker gränsvärdet längs linjen y=x:
+    \item[c)] Vi undersöker gränsvärdet längs linjen y=1:
 
         \vskip 0.1cm
 
         $$
         \lim_{(x, y)\to(1, 1)}{\frac{x-y}{x^2-y^2}}
-        \underset{y=x}\Imp
-        \lim_{x\to1}{\frac{x-x}{x^2-1}}
+        \underset{y=1}\Imp
+        \lim_{x\to1}{\frac{x-1}{x^2-1^2}}
         =
         \lim_{x\to1}{\frac{x-1}{(x-1)(x+1)}}
         =
@@ -117,8 +117,90 @@
 
         Om gränsvärdet existerar är den alltså lika med $\frac{1}{2}$.
 
-    \item[d)] hello
+        \vskip -0.4cm
 
+        $$
+        \lim_{(x, y)\to(1, 1)}{\frac{x-y}{x^2-y^2}}
+        =
+        \lim_{(x, y)\to(1, 1)}{\frac{x-y}{(x-y)(x+y)}}
+        =
+        \lim_{(x, y)\to(1, 1)}{\frac{1}{x+y}}
+        =
+        \lim_{(x, y)\to(1, 1)}{\frac{1}{1+1}}
+        =
+        \frac{1}{2}
+        $$
+
+        \vskip 0.2cm
+
+        Gränsvärdet existerar alltså och är lika med $\frac{1}{2}$.
+
+        \vskip 0.3cm
+
+    \item[d)] Vi undersöker först gränsvärdet längs x-axeln då y=0:
+
+        $$
+        \lim_{(x, y)\to(0, 0)}{\frac{\sin(2x^3y)}{x^4+16y^4}}
+        \underset{y=0}\Imp
+        \lim_{x\to0}{\frac{\sin(0)}{x^4}}
+        =
+        0
+        $$
+
+        Alltså ska gränsvärdet bli lika med 0 om det existerar. Vi undersöker sedan gränsvärdet längs linjen $y=x$:
+
+        \vskip 0.1cm
+
+        $$
+        \lim_{(x, y)\to(0, 0)}{\frac{\sin(2x^3y)}{x^4+16y^4}}
+        \underset{y=x}\Imp
+        \lim_{x\to0}{\frac{\sin(2x^4)}{17x^4}}
+        =
+        \lim_{x\to0}{\frac{D(\sin(2x^4))}{D(17x^4)}} \;\; \text{\scriptsize(L'Hôpitals regel)}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{8x^3\cos(2x^4)}{68x^3}}
+        =
+        \lim_{x\to0}{\frac{D(8x^3\cos(2x^4))}{D(68x^3)}} \;\; \text{\scriptsize(L'Hôpitals regel)}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{24x^2\cos(2x^4)-64x^6\sin(2x^4)}{204x^2}}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{D(24x^2\cos(2x^4)-64x^6\sin(2x^4))}{D(204x^2)}} \;\; \text{\scriptsize(L'Hôpitals regel)}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{-16x((-3+32x^8)\cos(2x^4)+36x^4\sin(2x^4))}{408x}}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{D(-16x((-3+32x^8)\cos(2x^4)+36x^4\sin(2x^4)))}{D(408x)}} \;\; \text{\scriptsize(L'Hôpitals regel)}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{16((3-576x^8)\cos(2x^4)+4x^4(-51+64x^8)\sin(2x^4))}{408}}
+        $$
+
+        $$
+        =
+        \lim_{x\to0}{\frac{16((3-576*0^8)\cos(2*0^4)+4*0^4(-51+64*0^8)\sin(2*0^4))}{408}}
+        =
+        \frac{48}{408}
+        $$
+
+        \vskip 0.2cm
+
+        Eftersom vi har fått två olika värden, 0 och $\frac{48}{408}$, längs två olika kurvor in mot $(0, 0)$ existerar gränsvärdet ej.
 \end{enumerate}
 
 \newpage
@@ -146,11 +228,20 @@ $$
 
 \vskip 0.2cm
 
-Definitionsmängden är alltså komplementet till mängden av punkter $(x, y)$ sådana att $y=x$ eller $x^2+y^2\le9$. Det innebär att definitionsmängden för $f$ är alla punkter som inte ligger på linjen $y=x$ och som inte ligger innanför cirkeln $x^2+y^2=9$.
+Definitionsmängden är alltså komplementet till mängden av punkter $(x, y)$ sådana att $y=x$ eller $x^2+y^2<9$. Det innebär att definitionsmängden för $f$ är alla punkter som inte ligger på linjen $y=x$ och som inte ligger innanför cirkeln $x^2+y^2=9$.
 
 $$
 \therefore D_{f}=\{(x, y)\in \R^2: x^2+y^2\geq9 \Och y\neq x\}
 $$
+
+\vskip 0.2cm
+
+Nedan följer en skissering av $f$:s definitionsmängd som är i blått. Det vita är utanför definitionsmängden.
+
+\begin{figure}[h]
+    \center
+    \includegraphics[scale=0.43]{./images/domain}
+\end{figure}
 
 Därefter kan vi låta $x=y\pm1$ vilket ger oss följande:
 
@@ -158,10 +249,10 @@ $$
 f(x, y)=f(y\pm1, y)=\frac{\sqrt{(y\pm1)^2+y^2-9}}{\pm1}=\pm\sqrt{2y^2\pm2y-8}
 $$
 
-Eftersom $g(y)=2y^2\pm2y-8$ antar alla reella värden större och lika med 0 antar $\sqrt{g(y)}$ också alla reella värden större och lika med noll. Alltså kan $f$ anta både alla negativa och positiva reella samt 0. 
+Eftersom $g(y)=2y^2\pm2y-8$ oavsett sett tecknet framför $2y$ antar alla reella värden större och lika med 0 antar $\sqrt{g(y)}$ också alla reella värden större och lika med noll. Alltså kan $f$ anta både alla negativa och positiva reella tal samt 0. Värdemängden blir helt enkelt de reella talen.
 
 $$
-\therefore\; V_{f}=\R
+\therefore\; V_{f}=\{z\in\R\}
 $$
 
 \newpage
@@ -173,16 +264,16 @@ $$
     \item[a)] Vi låter $f(x, y)$ vara fyra olika konstanter för att få fyra olika nivåkurvor. Låt dessa vara 0, 1, 2, och 3 för enkelhetens skull:
 
         $$
-        f(x, y)=0=y-x^2 \Imp y=x^2 \; \text{(Röd)}
+        f(x, y)=0=y-x^2 \Imp y=x^2 \;\;  \text{(Röd)}
         $$
         $$
-        f(x, y)=1=y-x^2 \Imp y=1+x^2\; \text{(Blå)}
+        f(x, y)=1=y-x^2 \Imp y=1+x^2\;\;  \text{(Blå)}
         $$
         $$
-        f(x, y)=2=y-x^2 \Imp y=2+x^2\; \text{(Svart)}
+        f(x, y)=2=y-x^2 \Imp y=2+x^2\;\;  \text{(Svart)}
         $$
         $$
-        f(x, y)=3=y-x^2 \Imp y=3+x^2\; \text{(Grön)}
+        f(x, y)=3=y-x^2 \Imp y=3+x^2\;\;  \text{(Grön)}
         $$
 
         \vskip 0.2cm
@@ -211,19 +302,19 @@ $$
             \end{tikzpicture}
         \end{figure}
 
-    \item[b)] För följande nivåkurvor sätter jag $f(x, y)$ till $0, ln(1), ln(2)$ och $ln(3)$:
+    \item[b)] För följande nivåkurvor sätter jag $f(x, y)$ till $ln(1), ln(2), ln(3)$ och $ln(4)$:
 
         $$
-        f(x, y)=0=ln(x+y) \Imp e^0=e^{ln(x+y)} \Imp y=e^0-x \; \text{(Röd)}
+        f(x, y)=ln(1)=ln(x+y) \Imp e^{ln(1)}=e^{ln(x+y)} \Imp y=1-x \;\; \text{(Röd)}
         $$
         $$
-        f(x, y)=ln(1)=ln(x+y) \Imp e^{ln(1)}=e^{ln(x+y)} \Imp y=1-x \; \text{(Blå)}
+        f(x, y)=ln(2)=ln(x+y) \Imp e^{ln(2)}=e^{ln(x+y)} \Imp y=2-x \;\; \text{(Blå)}
         $$
         $$
-        f(x, y)=ln(2)=ln(x+y) \Imp e^{ln(2)}=e^{ln(x+y)} \Imp y=2-x \; \text{(Svart)}
+        f(x, y)=ln(3)=ln(x+y) \Imp e^{ln(3)}=e^{ln(x+y)} \Imp y=3-x \;\; \text{(Svart)}
         $$
         $$
-        f(x, y)=ln(3)=ln(x+y) \Imp e^{ln(3)}=e^{ln(x+y)} \Imp y=3-x \; \text{(Grön)}
+        f(x, y)=ln(4)=ln(x+y) \Imp e^{ln(4)}=e^{ln(x+y)} \Imp y=4-x \;\; \text{(Grön)}
         $$
 
         \vskip 0.3cm
@@ -236,8 +327,8 @@ $$
             \center
             \begin{tikzpicture}
                 \begin{axis}[
-                    xmin=-5, xmax=5,
-                    ymin=-5, ymax=5, 
+                    xmin=-4, xmax=4,
+                    ymin=-4, ymax=4, 
                     grid=both,
                     axis lines=middle,
                     minor tick num=9,
@@ -384,7 +475,7 @@ Den enda av dessa lösningar som ligger inom $D$ är $(2, -1)$. Vidare ska vi st
 
         \vskip 0.2cm
 
-        $g(y)$ är strikt minskande då $-6\leq y\leq0$ vilket ger oss två punkter; ett potentiellt minimum vid $(1, 0)$ och ett potentiell maximum vid $(1, -6)$. 
+        $g(y)$ är strikt minskande då $-6\leq y\leq0$ ty $g^{'}(y)=2y-1$ vilket ger oss två punkter; ett potentiellt minimum vid $(1, 0)$ och ett potentiell maximum vid $(1, -6)$. 
 
         \vskip 0.3cm
 
@@ -396,7 +487,7 @@ Den enda av dessa lösningar som ligger inom $D$ är $(2, -1)$. Vidare ska vi st
 
         \newpage
 
-        $g(x)$ är strikt ökande då $1\leq x\leq4$ vilket ger oss två punkter; ett potentiellt minimum vid $(1, 0)$ och ett potentiellt maximum vid $(4, 0)$.
+        $g(x)$ är strikt ökande då $1\leq x\leq4$ ty $g^{'}(x)=2x$ vilket ger oss två punkter; ett potentiellt minimum vid $(1, 0)$ och ett potentiellt maximum vid $(4, 0)$.
 
         \vskip 0.3cm
 
@@ -421,7 +512,7 @@ Den enda av dessa lösningar som ligger inom $D$ är $(2, -1)$. Vidare ska vi st
 
         \vskip 0.2cm
 
-        $h(x)$ har alltså en extrempunkt vid $(3, -2)$ och vi behöver även pröva ändpunkterna vid $(1, -6)$ och $(4, 0)$. Detta ger oss alltså tre punkter.
+        $h(x)$ har alltså en extrempunkt då $x=3$ som ger punkten $(3, -2)$ att pröva och vi behöver även pröva ändpunkterna vid $(1, -6)$ och $(4, 0)$. Detta ger oss alltså tre punkter.
 \end{enumerate}
 
 Sammantaget behöver vi pröva punkterna $(2, -1)$, $(1, 0)$, $(1, -6)$, $(4, 0)$ och $(3, -2)$:
@@ -444,6 +535,6 @@ $$
 
 \vskip 0.2cm
 
-Funktionen $f$ har alltså det absoluta minimumet -1 som antas vid $(3, -2)$ och det absoluta maximumet 43 som antas vid $(1, -6)$.
+Funktionen $f$ har alltså det absoluta minimumet -1 som antas vid $(3, -2)$ och det absoluta maximumet 43 som antas vid $(1, -6)$ inom det givna området.
 
 \end{document}
